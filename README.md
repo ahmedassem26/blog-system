@@ -139,19 +139,6 @@ blog-system/
 - `PUT /api/posts/:id` - Update a post
 - `DELETE /api/posts/:id` - Delete a post
 
-### Testing
-
-use these accounts to test:
-
-username: ahmed@gmail.com
-password: ahmed123
-
-username: assem@gmail.com
-password: assem123
-
-username: mohamed@gmail.com
-password: mohamed123
-
 ### Author
 
 Ahmed Assem Mohamed
