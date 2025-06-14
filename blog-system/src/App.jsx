@@ -6,6 +6,7 @@ import AddEditPost from "./pages/AddEditPost";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
+        <Footer />
       </PostsProvider>
     </AuthProvider>
   );
