@@ -6,10 +6,7 @@ import AddEditPost from "./pages/AddEditPost";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Navbar from "./components/Navbar";
-
-const PrivateRoute = ({ children }) => {
-  return children;
-};
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (

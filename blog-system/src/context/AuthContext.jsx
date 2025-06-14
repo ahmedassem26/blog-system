@@ -8,8 +8,11 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const initializeAuth = () => {
+    const initializeAuth = async () => {
       try {
+        // Add a small delay to ensure loading state is visible
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
         const storedUser = localStorage.getItem("user");
         const storedToken = localStorage.getItem("token");
 
