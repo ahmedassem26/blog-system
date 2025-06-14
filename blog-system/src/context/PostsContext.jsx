@@ -71,11 +71,6 @@ export const PostsProvider = ({ children }) => {
   };
 
   const deletePost = async (postId) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this post?"
-    );
-    if (!confirmDelete) return;
-
     const response = await fetch(`http://localhost:4000/api/posts/${postId}`, {
       method: "DELETE",
       headers: {

@@ -1,17 +1,12 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import Modal from "./Modal";
 
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
+  const [isModalOpen, setModalOpen] = useState();
   const navigate = useNavigate();
-
-  const handleLogout = () => {
-    if (confirm("Are you sure you want to logout?")) {
-      logout();
-      navigate("/login");
-    }
-  };
 
   return (
     <nav className="bg-base-100  shadow-purple-500">
@@ -35,7 +30,7 @@ const Navbar = () => {
             {user ? (
               <div className="flex items-center space-x-4">
                 <button
-                  onClick={handleLogout}
+                  onClick={() => setModalOpen(true)}
                   className="text-red-600 hover:text-red-800 transition-all duration-300 cursor-pointer"
                 >
                   Logout
@@ -60,6 +55,25 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        title="Confirm Logout"
+      >
+        <p>Are you sure you want to Log out?</p>
+        <div className="modal-action justify-end">
+          <button
+            onClick={() => {
+              logout();
+              setModalOpen(false);
+              navigate("/login");
+            }}
+            className="btn btn-error"
+          >
+            Yes, Log out
+          </button>
+        </div>
+      </Modal>
     </nav>
   );
 };
