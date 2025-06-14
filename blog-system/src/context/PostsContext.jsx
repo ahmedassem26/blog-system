@@ -6,7 +6,6 @@ export const PostsContext = createContext();
 export const PostsProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [postMode, setpostMode] = useState("Add");
-  const [currentPost, setCurrentPost] = useState({});
   const { token, user } = useContext(AuthContext);
 
   // Fetch posts
@@ -23,16 +22,16 @@ export const PostsProvider = ({ children }) => {
     getAllPosts();
   }, []);
 
-  const handleEditPost = (post) => {
+  //handlers
+  const handleEditPost = () => {
     setpostMode("Edit");
-    setCurrentPost(post);
   };
 
   const handleAddPost = () => {
     setpostMode("Add");
-    setCurrentPost({});
   };
 
+  //Post operations
   const createPost = async (postData) => {
     const response = await fetch("http://localhost:4000/api/posts", {
       method: "POST",
@@ -97,16 +96,14 @@ export const PostsProvider = ({ children }) => {
       value={{
         posts,
         postMode,
-        setpostMode,
         handleAddPost,
         handleEditPost,
-        currentPost,
         createPost,
         updatePost,
         deletePost,
         token,
         user,
-        isLoggedIn: user ? true : false,
+        isLoggedIn: !!(token && user),
       }}
     >
       {children}
